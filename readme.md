@@ -1,3 +1,47 @@
+# Initial Login
+ MXR comes with internal bridge running by default. So teh detector can be eccessted in teh external port.
+
+ ## External IP Address
+ The external IP address is 192.168.1.10
+
+ ## MXR Login Credentials
+
+Default login is:
+username: pi
+password: raspberry
+
+## SSH interface
+Device is preconfigured to accept ssh connections on port 22
+
+It can be connect on external port
+
+Host: 192.168.1.10
+Use the credential provided above
+
+## Serial Connection
+
+Device can be connected via serial copnnection using teh credential above.
+BAUD rate is 115200 bps.
+
+# Power on and off detector
+
+To turn on the detector power use:
+
+``` 
+/mxr/power/mxr -on
+```
+
+To turn off the detector ower use:
+
+```
+/mxr/power/mxr -off
+```
+
+
+# Pico Sence COnnection
+PicoSence can be connected to the device.
+Set teh device IP address as 192.168.1.10 in the settings.txt
+
 # Setup
 
 ## Dual ethernet
@@ -22,9 +66,7 @@ sudo nmtui
 ```
 
 ```
-
 sudo apt-get install dhcpcd5
-
 nano /etc/dhcpcd.conf
 ```
 
@@ -44,11 +86,11 @@ static domain_name_servers=8.8.8.8
 ```
 # Ethernet Bridge
 
-ethernet bridge code is written in GO. It forwards UDP trafic between PC connected to poer eth0 and detector connected to eth1. The bridge is configures an a serce describe below.
+Ethernet bridge code is written in GO. It forwards UDP trafic between PC connected to poer eth0 and detector connected to eth1. The bridge is configures an a serce describe below.
 
 bridge can be run as:
 ```
-/mxr/pridge/mxbridge [-t]
+/mxr/bridge/mxbridge [-t]
 ```
 -t enables the traffic log on screen
 
@@ -73,7 +115,7 @@ service mxbridge stop
 
 # Startup Code
 
-executes mxrpi    to power on the unit
+On startup the code automaticallt turns on teh detection power
 
 ```
 sudo nano /etc/rc.local
